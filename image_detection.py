@@ -70,6 +70,7 @@ while True:
         
         #draw the rectangle based on the retrieved rectangels
         cv2.rectangle(frame, (x,y), (x+w, y+h), (255, 0, 0), 3)
+        cv2.putText(frame, 'face', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, .7, (255, 0, 0), 2, cv2.LINE_AA)
         #find the area in the image that represent the face in the gray and frame
         roi_gray = gray[y:y+w, x:x+w]
         #this references the frame image directly
@@ -80,6 +81,7 @@ while True:
             #remember you want to reference the roi_color not the roi_gray since
             #roi_color refereces the actual frame while roi_gray does not.
             cv2.rectangle(roi_color, (ex,ey), (ex+ew, ey+eh), (0,255,0), 3)
+            cv2.putText(roi_color, 'eyes', (ex, ey - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2, cv2.LINE_AA)
     #after all the changes, show the image with the drawings
     cv2.imshow('frame', frame)
     
