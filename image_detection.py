@@ -30,8 +30,19 @@ while True:
     ##indicate how long you want to keep the window open
     #use 0 if you want to keep it open till you press any key.
     #press q to exit the while loop
-    if cv2.waitKey(1) == 'q':
+    key = cv2.waitKey(1) and 0xFF
+
+    # Break the loop if 'q' is pressed or windows are closed
+    if key == ord('q'):
         break
+
+    # Check if any of the windows were closed
+    if cv2.getWindowProperty('image', cv2.WND_PROP_VISIBLE) < 1:
+        cv2.destroyWindow('image')
+    if cv2.getWindowProperty('image mask', cv2.WND_PROP_VISIBLE) < 1:
+        cv2.destroyWindow('image mask')
+    if cv2.getWindowProperty('isolated image', cv2.WND_PROP_VISIBLE) < 1:
+        cv2.destroyWindow('isolated image')
 
 #Make sure to destroy all opened windows when you are done
 cv2.destroyAllWindows()
