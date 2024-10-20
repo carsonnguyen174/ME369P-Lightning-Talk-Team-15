@@ -2,6 +2,20 @@ import cv2
 import numpy as np
 
 'Color Detection Code: code written ourselves'
+# #place holder function to bypass the parameter for createTrackbar
+# def do_nothing(variable):
+#     pass
+
+# #create new window to house the sliders
+# cv2.namedWindow('Sliders')
+# #create the sliders for each value of interest
+# cv2.createTrackbar('h_low', 'Sliders', 0, 179, do_nothing)
+# cv2.createTrackbar('s_low', 'Sliders', 0, 255, do_nothing)
+# cv2.createTrackbar('v_low', 'Sliders', 0, 255, do_nothing)
+# cv2.createTrackbar('h_hi', 'Sliders', 0, 179, do_nothing)
+# cv2.createTrackbar('s_hi', 'Sliders', 0, 255, do_nothing)
+# cv2.createTrackbar('v_hi', 'Sliders', 0, 255, do_nothing)
+
 while True:
     #img = cv2.imread('m_and_ms.jpg', 0) #load the image in grayscale
     img = cv2.imread('m_and_ms.jpg', 1) #load the image with alpha channel
@@ -13,9 +27,22 @@ while True:
     #convert the BGR image to Hue-Saturation-Value
     img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     
+    
     #define your color bounds that you want to isolate
-    lower_bound = np.array([110,50,50])
-    upper_bound = np.array([130,255,255])
+    lower_bound = np.array([90,0,0])
+    upper_bound = np.array([113,255,255])
+    
+    # #assign the variables with the slider position
+    # h_low = cv2.getTrackbarPos('h_low', 'Sliders')
+    # v_low = cv2.getTrackbarPos('v_low', 'Sliders')
+    # s_low = cv2.getTrackbarPos('s_low', 'Sliders')
+    # h_hi = cv2.getTrackbarPos('h_hi', 'Sliders')
+    # v_hi = cv2.getTrackbarPos('v_hi', 'Sliders')
+    # s_hi = cv2.getTrackbarPos('s_hi', 'Sliders')
+    
+    # #define your color bounds that you want to isolate
+    # lower_bound = np.array([h_low,s_low,v_low])
+    # upper_bound = np.array([h_hi,s_hi,v_hi])
     
     #create a mask from the img_hsv based on the bounds
     mask = cv2.inRange(img_hsv, lower_bound, upper_bound)
@@ -38,15 +65,16 @@ while True:
         break
 
     # Check if any of the windows were closed
-    if cv2.getWindowProperty('image', cv2.WND_PROP_VISIBLE) < 1:
-        cv2.destroyWindow('image')
-    if cv2.getWindowProperty('image mask', cv2.WND_PROP_VISIBLE) < 1:
-        cv2.destroyWindow('image mask')
-    if cv2.getWindowProperty('isolated image', cv2.WND_PROP_VISIBLE) < 1:
-        cv2.destroyWindow('isolated image')
+    # if cv2.getWindowProperty('image', cv2.WND_PROP_VISIBLE) < 1:
+    #     cv2.destroyWindow('image')
+    # if cv2.getWindowProperty('image mask', cv2.WND_PROP_VISIBLE) < 1:
+    #     cv2.destroyWindow('image mask')
+    # if cv2.getWindowProperty('isolated image', cv2.WND_PROP_VISIBLE) < 1:
+    #     cv2.destroyWindow('isolated image')
 
 #Make sure to destroy all opened windows when you are done
 cv2.destroyAllWindows()
+
 
 
 '''
