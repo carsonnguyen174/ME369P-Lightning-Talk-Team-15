@@ -56,21 +56,15 @@ while True:
     cv2.imshow('isolated image', img_iso)
     
     ##indicate how long you want to keep the window open
-    #use 0 if you want to keep it open till you press any key.
-    #press q to exit the while loop
     key = cv2.waitKey(1) & 0xFF
 
-    # Break the loop if 'q' is pressed or windows are closed
-    if key == ord('q'):
-        break
-
     # Check if any of the windows were closed
-    # if cv2.getWindowProperty('image', cv2.WND_PROP_VISIBLE) < 1:
-    #     cv2.destroyWindow('image')
-    # if cv2.getWindowProperty('image mask', cv2.WND_PROP_VISIBLE) < 1:
-    #     cv2.destroyWindow('image mask')
-    # if cv2.getWindowProperty('isolated image', cv2.WND_PROP_VISIBLE) < 1:
-    #     cv2.destroyWindow('isolated image')
+    if cv2.getWindowProperty('image', cv2.WND_PROP_VISIBLE) < 1:
+        break
+    if cv2.getWindowProperty('image mask', cv2.WND_PROP_VISIBLE) < 1:
+        break
+    if cv2.getWindowProperty('isolated image', cv2.WND_PROP_VISIBLE) < 1:
+        break
 
 #Make sure to destroy all opened windows when you are done
 cv2.destroyAllWindows()
@@ -78,7 +72,7 @@ cv2.destroyAllWindows()
 
 
 '''
-Face Detection Code: based off code from _______________ modified to label face and eye regions as well as quit with our parameters
+Face Detection Code: based off code from https://www.youtube.com/watch?v=mPCZLOVTEc4&t=1s modified to label face and eye regions as well as quit with our parameters
 '''
 
 # cap = cv2.VideoCapture(0)
